@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/favicon.png">
+    <link rel="stylesheet" href="stylesheet.css">
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            let slideIndex = 0; // Start from 0 to synchronize with the automatic interval
+
+            function showSlides(n) {
+                const slides = document.querySelectorAll('.slide');
+
+                if (n >= slides.length) {
+                    slideIndex = 0; // Reset to 0 when reaching the end
+                }
+
+                if (n < 0) {
+                    slideIndex = slides.length - 1; // Go to the last slide when going back from the first
+                }
+
+                for (let i = 0; i < slides.length; i++) {
+                    slides[i].style.display = 'none';
+                }
+
+                slides[slideIndex].style.display = 'block';
+                slideIndex++; // Increment the slide index for the next call
+            }
+
+            function plusSlides(n) {
+                showSlides(slideIndex += n);
+            }
+
+            // Previous button
+            document.querySelector('.prev').addEventListener('click', function () {
+                plusSlides(-1);
+            });
+
+            // Next button
+            document.querySelector('.next').addEventListener('click', function () {
+                plusSlides(1);
+            });
+
+            // Automatic slideshow
+            setInterval(function () {
+                plusSlides(1);
+            }, 4000); // Change image every 4 seconds (adjust as needed)
+
+            // Initial call to showSlides to display the first slide
+            showSlides(slideIndex);
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const contactLink = document.getElementById('contact-link');
+            const contactDialog = document.getElementById('contact-dialog');
+            const closeDialogButton = document.getElementById('close-dialog');
+
+            contactLink.addEventListener('click', function () {
+                contactDialog.style.display = 'block';
+            });
+
+            closeDialogButton.addEventListener('click', function () {
+                contactDialog.style.display = 'none';
+            });
+        });
+
+    </script>
+    <title>Pralaya Nivarak</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
+    <style>
+
+    </style>
+
+</head>
+
+<body>
+    <div class="wrapper">
+        <header>
+            <div class="logo">
+                <a href="" color=><img src="logo.png" alt="logo" height="90px" width="276px"></a>
+            </div>
+            <div class="sidelogo">
+                <img class="i1" src="SIH2023-logo.png" height="60px" width="450px" alt="sideicon1">
+            </div>
+            <header>
+                <div class="logo">
+                    <a href="" color=><img src="logo.png" alt="logo" height="90px" width="276px"></a>
+                </div>
+                <div class="sidelogo">
+                    <img class="i1" src="SIH2023-logo.png" height="60px" width="450px" alt="sideicon1">
+    
+    
+    
+                </div>
+                <nav class="navbar">
+                    <ul>
+                        <li>
+                            <a href="#" id="home"> Home </a>
+                        </li>
+                        <li>
+                            <a href="#about"> About </a>
+                        </li>
+    
+                        <li>
+                            <a href="prevention.html">Prevention</a>
+                        </li>
+                        <li>
+                            <a href="#">Flood Predictor</a>
+                        </li>
+                        <li>
+                            <a href="weather.html">Weather predictor </a>
+                        </li>
+                        <li>
+                            <a href="training.html">Training and certifications</a>
+                        </li>
+                    </ul>
+                </nav>
+            </header> 
+        <div class="btn">
+
+            <a href="https://nidm.gov.in/PDF/IEC/fire%20advt.pdf">
+                <div class="round-btn" id="round-btn-fire"></div>
+            </a>
+            <a href="https://nidm.gov.in/PDF/IEC/flood-eng.pdf">
+                <div class="round-btn" id="round-btn-flood"></div>
+            </a>
+            <a href="https://nidm.gov.in/PDF/IEC/EQ-eng.pdf">
+                <div class="round-btn" id="round-btn-earthquake"></div>
+            </a>
+            <a href="https://mausam.imd.gov.in/imd_latest/contents/pdf/cyclone_sop.pdfl">
+                <div class="round-btn" id="round-btn-cyclone"></div>
+            </a>
+            <a href="https://nidm.gov.in/PDF/pubs/NDMA/6.pdf">
+                <div class="round-btn" id="round-btn-nuclear"></div>
+            </a>
+        </div>
+
+
+
+        <div class="slideshow">
+            <div class="slide fade">
+                <img src="img.jpg" width="100%" height="763px" alt="Image 1">
+            </div>
+            <div class="slide fade">
+                <mg src="fire.webp" width="100%" height="763px" alt="Image 3">
+            </div>
+
+            <div class="forward_backward">
+                <button class="prev" onclick="plusSlides(-1)">&#10094; </button>
+                <div class="slide fade">
+                    <img src="fire.webp" width="100%" height="763px" alt="Image 1">
+                </div>
+                <!-- ... (other slides) ... -->
+                <button class="next" onclick="plusSlides(1)"> &#10095;</button>
+            </div>
+
+        </div>
+
+
+        <script src="slideshow.js"></script>
+        <div class="bottom">
+            <div class="container">
+                <div class="card">
+                    <div class="front">
+                        <img class="image" src="covid.jpg" alt="Image 1" width="300px" height="500px">
+                        <div class="text">
+                            <div class="topical-report"></div>
+                            <div class="captons"></div>
+                        </div>
+
+                    </div>
+                    <div class="back">
+
+                        <img src="covid-19.jpg" alt="Back Image 1" width="300px" height="500px">
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="front">
+                        <img src="cloudburst.jpg" alt="Image 2" width="300px" height="500px">
+                    </div>
+                    <div class="back">
+
+                        <img src="cloud.jpg" alt="Back Image 2" width="300px" height="500px">
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="front">
+                        <img src="earthquakec.jpg" alt="Image 3" width="300px" height="500px">
+                    </div>
+                    <div class="back">
+
+                        <img src="earth.jpg" alt="Back Image 3" width="300px" height="500px">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="about-container" id="about">
+                <div class="who">
+                    <h1 class="head">ABOUT US</h1>
+                    <p class="who-text">Pralaya Nivarak is a leading disaster management organization that brings
+                        together a dedicated team of experts, cutting-edge technology, and a passion for humanitarian
+                        service. With years of experience in disaster risk reduction, response, and recovery, we are at
+                        the forefront of disaster management innovation.</p>
+                    <p class="who-text">we are committed to safeguarding lives, property, and communities from the
+                        unpredictable forces of nature. Our mission is to empower individuals, organizations, and
+                        governments to effectively prepare for, respond to, and recover from disasters, ensuring a safer
+                        and more resilient world for all.</p>
+
+                </div>
+
+
+
+
+
+            </div>
+            <div class="intro">
+                <h1 class="h1">"Pralaya Nivarak"</h1>
+                <p class="introduction">Your trusted companion in the realm of disaster management and preparedness</p>
+            </div>
+
+
+
+
+        </div>
+
+
+        <footer class="footer">
+
+
+
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="logo.png" alt="Disaster Management Logo">
+                </div>
+                <div class="footer-links">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="https://ndmindia.mha.gov.in/contact-us">Helpline</a></li>
+                        <li><a href="training.html">Resources</a></li>
+                        <li><a href="#">Contact us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-info">
+                <p>&copy; 2023 Pralaya Nivarak. All Rights Reserved.</p>
+            </div>
+            <div class="logo-footer">
+                <img class="yt" src="youtube logo.png" alt="" width="70px" height="70px">
+                <img class="insta" src="Instagram-Logo.png" alt="" width="40px" height="40px">
+                <img class="yt" src="twitter logo.png" alt="" width="40px" height="40px">
+                <img class="yt" src="linkedin logo.png" alt="" width="40px" height="40px">
+            </div>
+<script>
+window.embeddedChatbotConfig = {
+chatbotId: "wdj8j3CJNuN_HFgvZxVcn",
+domain: "www.chatbase.co"
+}
+</script>
+<script
+src="https://www.chatbase.co/embed.min.js"
+chatbotId="wdj8j3CJNuN_HFgvZxVcn"
+domain="www.chatbase.co"
+defer>
+</script>
+        </footer>
+    </div>
+  
+
+</body>
+
+</html>

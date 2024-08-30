@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Graduate&display=swap');
+    </style>
+    <title>Training Page with Videos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url(disaster.jpg);
+            color: white;
+            overflow: hidden;
+
+        }
+
+        #menu {
+
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+
+        }
+
+        .section {
+            display: none;
+            padding: 20px;
+            border-radius: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+            text-align: center;
+            animation: fadeIn 1s;
+        }
+
+        #video-section,
+        #form-section,
+        #certificate-section {
+            border: 2px solid #878282;
+        }
+
+        #certificate-section {
+            background-image: url(certificate.jpg);
+            background-repeat: no-repeat;
+            background-position: center;
+            height: 438px;
+        }
+
+
+        #video-section {
+            display: block;
+        }
+
+        video {
+            max-width: 100%;
+        }
+
+        #form-section,
+        #certificate-section {
+            display: none;
+        }
+
+        form {
+            margin-top: 2px;
+        }
+
+        button {
+            background-color: #050c13;
+            color: white;
+            font-size: 18px;
+            padding: 10px 20px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            font-size: 20px;
+            color: aquamarine;
+
+        }
+
+        button:active {
+            color: yellow;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        #certificate-section h1 {
+            font-family: 'Graduate', serif;
+            ;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div id="menu">
+        <button onclick="loadVideo('earthquake')">Earthquake</button>
+        <button onclick="loadVideo('fire')">Fire</button>
+        <button onclick="loadVideo('cyclone')">Cyclone</button>
+        <button onclick="loadVideo('flood')">Flood</button>
+    </div>
+
+    <div id="video-section" class="section">
+        <h1>Training Videos</h1>
+        <div id="video-container"></div>
+        <button onclick="showForm()">Next</button>
+    </div>
+
+    <div id="form-section" class="section">
+        <h1>Enter Your Details</h1>
+        <form onsubmit="return showCertificate()">
+            <label for="name">Name:</label>
+            <input type="text" id="name" required><br>
+            <label for="age">Age:</label>
+            <input type="number" id="age" required><br>
+            <label for="place">Place:</label>
+            <input type="text" id="place" required><br>
+            <button type="submit">Generate Certificate</button>
+        </form>
+    </div>
+
+    <div id="certificate-section" class="section">
+        <h1 style="
+        font-family: graduate;
+        font-size: 38px;
+        color: black;
+    ">Certificate of Training</h1>
+        <p style="
+        font-family: 'Dancing Script', cursive;
+        font-size: 29px;
+        color: red;
+        text-decoration: underline;
+    ">Congratulations, you have completed the training!</p>
+        <p style="
+        font-family: 'Dancing Script';
+        font-size: 45px;
+        color: black;
+    ">This is certified to </p>
+        <p style="
+        font-family: 'Dancing Script';
+        font-size: 45px;
+        color: black; line-height: 2px;
+    ">Mr/Mrs <span id="certificate-name"></span></p>
+        <p style="
+        font-family: 'Dancing Script';
+        font-size: 32px;
+        color: black; line-height: 2px; ">of age <span id="certificate-age"></span> resident of <span id="certificate-place"></span></p>
+
+        <p style="
+        font-family: 'Dancing Script';
+        font-size: 24px;
+        color: black; line-height: 2px; ">has successfully complete this course of disaster management</p>
+
+
+
+        
+    </div>
+
+    <script>
+        // Declare a global variable to hold the video iframe element
+        let videoIframe;
+    
+        function loadVideo(videoName) {
+            const videoContainer = document.getElementById('video-container');
+            let videoId = "";
+    
+            switch (videoName.toLowerCase()) {
+                case 'earthquake':
+                    videoId = 'BLEPakj1YTY';
+                    break;
+                case 'cyclone':
+                    videoId = 'Li1ysRexTY8';
+                    break;
+                case 'flood':
+                    videoId = '43M5mZuzHF8';
+                    break;
+                case 'fire':
+                    videoId = '0MO2ohX2Iao';
+                    break;
+                default:
+                    break;
+            }
+    
+            if (videoId) {
+                // Create the video iframe
+                videoIframe = document.createElement('iframe');
+                videoIframe.width = "560";
+                videoIframe.height = "315";
+                videoIframe.src = `https://www.youtube.com/embed/${videoId}`;
+                videoIframe.frameborder = "0";
+                videoIframe.allowfullscreen = true;
+    
+                videoContainer.innerHTML = ''; // Clear the video container
+                videoContainer.appendChild(videoIframe);
+                showSection('video');
+            } else {
+                // Handle the case where no valid video ID was found
+                alert('Invalid video option selected.');
+            }
+        }
+    
+        function showSection(sectionName) {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => section.style.display = 'none');
+            document.getElementById(sectionName + '-section').style.display = 'block';
+    
+            // Pause the video when switching to the certificate page
+            if (sectionName === 'form' && videoIframe) {
+                // Pause the video by setting its src to an empty string
+                videoIframe.src = '';
+            }
+        }
+    
+        // Array to store questions and their options
+const questions = [
+    {
+        question: "Question 1: What should you do during an earthquake?",
+        options: ["A. Run outside", "B. Hide under a table", "C. Stand near a window", "D. Stay where you are"],
+        correctAnswer: "D"
+    },
+    {
+        question: "Question 2: How should you prepare for a cyclone?",
+        options: ["A. Board up windows", "B. Open all doors", "C. Go for a swim", "D. Stand on the roof"],
+        correctAnswer: "A"
+    },
+    {
+        question: "Question 3: What is the most common cause of flooding?",
+        options: ["A. Heavy rain", "B. Sunshine", "C. Snowfall", "D. Tornado"],
+        correctAnswer: "A"
+    },
+    {
+        question: "Question 4: How can you prevent a fire at home?",
+        options: ["A. Keep flammable items near the stove", "B. Use candles without supervision", "C. Install smoke detectors", "D. Pour water on electrical appliances"],
+        correctAnswer: "C"
+    },
+    {
+        question: "Question 5: What should you do when you hear a tornado warning?",
+        options: ["A. Go outside to see the tornado", "B. Stay in a mobile home", "C. Take shelter in a basement or an interior room", "D. Drive towards the tornado"],
+        correctAnswer: "C"
+    }
+];
+
+let currentQuestion = 0; // Track the current question
+
+function showForm() {
+    const formSection = document.getElementById('form-section');
+    formSection.innerHTML = ''; // Clear existing content
+
+    // Display the current question and options
+    const questionData = questions[currentQuestion];
+    const form = document.createElement('form');
+    form.onsubmit = function (event) {
+        event.preventDefault(); // Prevent form submission
+        checkAnswer(questionData.correctAnswer);
+    };
+    const questionText = document.createElement('p');
+    questionText.textContent = questionData.question;
+    form.appendChild(questionText);
+
+    questionData.options.forEach((option, index) => {
+        const label = document.createElement('label');
+        label.innerHTML = `<input type="radio" name="answer" value="${String.fromCharCode(65 + index)}"> ${option}`;
+        form.appendChild(label);
+        form.appendChild(document.createElement('br'));
+    });
+
+    const submitButton = document.createElement('button');
+    submitButton.type = 'submit';
+    submitButton.textContent = 'Submit';
+    form.appendChild(submitButton);
+
+    formSection.appendChild(form);
+}
+
+function checkAnswer(correctAnswer) {
+    const selectedAnswer = document.querySelector('input[name="answer"]:checked');
+    if (selectedAnswer && selectedAnswer.value === correctAnswer) {
+        currentQuestion++;
+        if (currentQuestion < questions.length) {
+            showForm(); // Show the next question
+        } else {
+            generateCertificate();
+        }
+    } else {
+        alert('Incorrect answer. Please try again.');
+    }
+}
+
+function generateCertificate() {
+    // Rest of your certificate generation code
+    // Call this function when all answers are correct
+}
+
+// Set the "Next" button's onclick event handler
+document.getElementById('video-section').querySelector('button').onclick = function () {
+    currentQuestion = 0; // Reset the current question
+    showForm();
+};
+    </script>
+    
+
+</body>
+
+</html>
